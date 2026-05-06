@@ -1,0 +1,32 @@
+Minnesota State Fair Canned & Preserved Foods Analysis
+
+Course: SEIS 631-02 Data Preparation and Analysis
+Institution: University of St. Thomas
+Assignment: Choose Your Own Hypothesis
+
+Project Overview
+This repository contains the code, data, and analysis for my final project evaluating competition results from the Minnesota State Fair's Canned and Preserved Foods division. The primary goal of this research is to investigate community engagement across the state of Minnesota, which aligns with the university's mission to advance the common good.
+
+Hypotheses
+This analysis is driven by two main hypotheses:
+
+1. Geographic Impact: Does geographic location (Twin Cities Metro vs. Greater Minnesota) significantly impact the distribution of winning entries? I will be testing this using permutation testing to compare the mean number of awards between urban and rural participants.
+2. The "Veteran" Advantage: Do repeat winners hold a statistically measurable advantage? I plan to use bootstrapping to build confidence intervals around the proportion of repeat winners to see if frequent competitors have a measurable edge.
+
+Data Collection
+Building the dataset for this project ended up being a significant part of the work. I initially attempted to write a script to manually extract the data from the official competition PDFs, but I ran into too many formatting inconsistencies. To get around this, I used NotebookLM and Gemini to accurately extract and structure all of the data from the source documents.
+
+The final dataset covers the years 2019 through 2025, with two notable gaps:
+*2020 data is missing because the fair did not hold canning competitions due to COVID-19.
+*2024 data is missing because the state fair has not made those specific records available online.
+
+Repository Structure
+* data/ - Contains the raw extracted data and the final cleaned datasets.
+* notebooks/ - Jupyter notebooks containing the EDA, data cleaning steps, and final statistical analyses.
+* reports/ - Includes the project check-in, descriptive analysis summaries, and the final conclusions.
+* presentations/ - Slide deck for the final Week 14 class presentation.
+
+Technologies Used
+* Python (Pandas, NumPy)
+* SciPy & Statsmodels for permutation testing and bootstrapping
+* NotebookLM / Gemini LLM for PDF data extraction
