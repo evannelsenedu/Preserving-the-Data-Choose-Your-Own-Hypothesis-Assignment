@@ -1,0 +1,16 @@
+[workspace]
+authors = ["Evan Nelsen <nels3537@stthomas.edu>"]
+channels = ["conda-forge"]
+name = "Preserving-the-Data-Choose-Your-Own-Hypothesis-Assignment"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+pandas = ">=3.0.2,<4"
+numpy = ">=2.4.3,<3"
+python = ">=3.14.4,<3.15"
+jupyter = ">=1.1.1,<2"
+matplotlib = ">=3.10.9,<4"
+seaborn = ">=0.13.2,<0.14"
