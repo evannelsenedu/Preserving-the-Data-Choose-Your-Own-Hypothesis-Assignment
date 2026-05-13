@@ -8,11 +8,11 @@ This analysis is driven by two main hypotheses:
 
 **Hypothesis 1 (Geographic Impact)**
 * **Null Hypothesis:** Geographic location (Twin Cities Metro vs. Greater Minnesota) has no significant impact on the mean number of awards won by participants.
-* **Alternative Hypothesis:** Geographic location significantly impacts the mean number of awards won by participants.
+* **Alternative Hypothesis:** Geographic location has no impact on the mean number of awards won by placing participants.
 
 **Hypothesis 2 (The "Veteran" Advantage)**
-* **Null Hypothesis:** Repeat winners do not hold a statistically measurable advantage over first-time winners.
-* **Alternative Hypothesis:** Repeat winners hold a statistically measurable advantage over first-time winners.
+* **Null Hypothesis:** The proportion of top placements won by repeat competitors is less than or equal to the proportion won by first-time competitors (i.e., the winner's circle is not dominated by veterans).
+* **Alternative Hypothesis:** Repeat competitors claim a strictly greater proportion of top placements than first-time competitors.
 
 ## 3. Data Description
 Getting this data into a usable format was a massive headache. I initially tried to manually extract the data from the official competition PDFs, but standard extractors failed due to formatting inconsistencies. To get around this, I used NotebookLM and Gemini to accurately extract and structure all of the archival data from 2019 to 2025. 
@@ -33,10 +33,13 @@ To analyze the data, I used the following statistical methods:
 ## 5. Results
 Here are the main findings from the analysis:
 
-* **Descriptive Stats:** Out of 1,664 total extracted entries, after cleaning out non-competition tracking rows, the dataset showed 284 unique contestants from Greater Minnesota and 108 from the Twin Cities Metro. Jams were the most popular subcategory overall.
-* **Geographic Impact:** The permutation test resulted in an observed mean difference of -1.3932 (Metro mean: 3.17, Greater MN mean: 4.56) and a p-value of 0.0727. Because this p-value is greater than 0.05, we fail to reject the null hypothesis. While Greater Minnesota brings in a massive volume of entries, the mean number of awards per participant does not statistically differ between the two regions.
-* **Veteran Advantage:** The bootstrap distribution showed an observed proportion of 0.5434 for repeat winners. The 95% confidence interval [0.4949, 0.5918] confirmed a significant advantage for repeat competitors, showing that over half of all awards go to established veterans.
-* **The Top 10%:** The 90th percentile bootstrap revealed a heavily skewed competitive landscape (observed 90th percentile = 9.0). The 95% confidence interval [8.0, 11.9] shows that to break into the top tier of state fair canners, a competitor generally needs to secure a massive 8 to 12 awards, highlighting the dominance of "super-competitors" (like one entrant who secured 55 placements).
+* **Descriptive Stats:** Out of 1,664 total extracted entries, after cleaning out non-competition tracking rows, the dataset showed 284 unique placing contestants from Greater Minnesota and 108 from the Twin Cities Metro. Jams were the most popular subcategory overall.
+
+* **Geographic Impact:** The permutation test resulted in an observed mean difference of -1.3932 (Metro mean: 3.17, Greater MN mean: 4.56) and a p-value of 0.0727. Because this p-value is greater than 0.05, we fail to reject the null hypothesis. While we cannot measure the overall probability of winning based on region, we can conclude that among those who successfully place, geography does not significantly dictate the size of their award haul.
+
+* **Veteran Dominance:** The bootstrap distribution showed an observed proportion of 0.5434 for repeat winners. The 95% confidence interval [0.4949, 0.5918] confirms that the winner's circle is not evenly distributed among new faces. With 95% confidence, over half of all top placements are claimed by a core group of recurring participants.
+
+* **The Top 10%:** The 90th percentile bootstrap revealed a heavily skewed competitive landscape (observed 90th percentile = 9.0). The 95% confidence interval [8.0, 11.9] shows that to break into the top tier of state fair canners, a competitor generally needs to secure 8 to 12 awards. Considering this dataset only covers five active years of competition, hauling in ~10 awards highlights the intense dominance of "super-competitors" (like one entrant who secured 55 placements).
 
 ## 6. Uncertainty Estimation
 To quantify uncertainty, I relied on resampling techniques:
@@ -46,7 +49,9 @@ To quantify uncertainty, I relied on resampling techniques:
 * **Interpretation:** The 95% bootstrap confidence intervals indicate we can be 95% confident that the true population parameters fall within our calculated ranges. Specifically, we can be highly confident that the true proportion of veteran winners sits between 49.49% and 59.18%, and the true threshold to be a top 10% competitor sits between 8.0 and 11.9 total awards.
 
 ## 7. Limitations
-The biggest limitation of this dataset is survivorship bias: the data *only* includes people who actually placed. Because we have zero data on the rest of the entrants who didn't win an award, we cannot calculate true win rates or control for the total volume of submissions per region. Additionally, the missing years (2020 and 2024) and the manual categorization of "Twin Cities Metro" (strictly limiting it to Minneapolis and St. Paul) may slightly skew the regional representation.
+The biggest limitation of this dataset is survivorship bias: the data only includes people who actually placed. Because we have zero data on the rest of the entrants who didn't win an award, we cannot calculate true win rates or control for the total volume of submissions per region.
+
+Additionally, because we do not know the underlying proportion of veterans versus rookies in the total entrant pool, we cannot definitively claim veterans have a higher probability of winning (the base rate fallacy); we can only measure their dominance within the winner's circle itself. Finally, the missing years (2020 and 2024) and the manual categorization of "Twin Cities Metro" (strictly limiting it to Minneapolis and St. Paul) may slightly skew the regional representation and overall award accumulation timelines.
 
 ## 8. References
 * Minnesota State Fair Archival Records (ArcaSearch)
